@@ -8,6 +8,7 @@ import '../widgets/doctor_card.dart';
 import '../widgets/symptom_carousel.dart';
 import '../widgets/filter_bottom_sheet.dart';
 import '../widgets/city_selector_sheet.dart';
+import '../../../notifications/presentation/widgets/notification_badge_button.dart';
 
 class DoctorDirectoryScreen extends ConsumerStatefulWidget {
   const DoctorDirectoryScreen({super.key});
@@ -103,6 +104,7 @@ class _DoctorDirectoryScreenState extends ConsumerState<DoctorDirectoryScreen> {
           ),
         ),
         actions: [
+          const NotificationBadgeButton(iconColor: Colors.black87),
           IconButton(
             icon: const Icon(Icons.tune),
             tooltip: 'Filters',

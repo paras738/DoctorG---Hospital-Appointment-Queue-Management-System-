@@ -17,6 +17,7 @@ import '../../features/booking/presentation/screens/my_appointments_screen.dart'
 import '../../features/booking/domain/models/appointment_model.dart';
 import '../../features/live_queue/presentation/screens/live_queue_screen.dart';
 import '../../features/doctor_dashboard/presentation/screens/doctor_dashboard_screen.dart';
+import '../../features/notifications/presentation/screens/notifications_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authProfileStreamProvider);
@@ -104,6 +105,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/doctor-dashboard',
         builder: (context, state) => const DoctorDashboardScreen(),
+      ),
+      GoRoute(
+        path: '/notifications',
+        builder: (context, state) => const NotificationsScreen(),
       ),
     ],
   );

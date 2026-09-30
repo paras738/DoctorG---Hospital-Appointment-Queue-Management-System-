@@ -6,6 +6,7 @@ import '../../../../core/theme/app_theme.dart';
 import '../../../doctor_directory/presentation/controllers/doctor_directory_controller.dart';
 import '../controllers/live_queue_controller.dart';
 import '../../domain/models/queue_state_model.dart';
+import '../../../notifications/presentation/widgets/notification_badge_button.dart';
 
 class LiveQueueScreen extends ConsumerStatefulWidget {
   final String doctorId;
@@ -87,6 +88,7 @@ class _LiveQueueScreenState extends ConsumerState<LiveQueueScreen>
           ],
         ),
         actions: [
+          const NotificationBadgeButton(iconColor: Colors.white),
           IconButton(
             icon: Icon(
               _audioAlertsEnabled ? Icons.volume_up : Icons.volume_off,
