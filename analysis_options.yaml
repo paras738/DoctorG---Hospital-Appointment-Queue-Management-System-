@@ -1,4 +1,5 @@
-include: package:flutter_lints/flutter.yaml
+# Include flutter_lints when Flutter SDK has run flutter pub get
+# include: package:flutter_lints/flutter.yaml
 
 linter:
   rules:

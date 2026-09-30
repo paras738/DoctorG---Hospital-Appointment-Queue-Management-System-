@@ -10,6 +10,8 @@ import '../controllers/booking_controller.dart';
 import '../widgets/add_family_member_sheet.dart';
 import '../../../auth/presentation/controllers/auth_controller.dart';
 import '../../../doctor_directory/presentation/controllers/doctor_directory_controller.dart';
+import '../../../payment/presentation/controllers/payment_controller.dart';
+import '../../../payment/presentation/widgets/payment_receipt_sheet.dart';
 
 class BookingScreen extends ConsumerStatefulWidget {
   final String doctorId;
@@ -53,11 +55,63 @@ class _BookingScreenState extends ConsumerState<BookingScreen> {
       return;
     }
 
+    final paymentMode = ref.read(bookingPaymentModeProvider);
     final appointment = await ref
         .read(bookingSubmissionControllerProvider.notifier)
         .confirmBooking(doctorId: widget.doctorId, consultationFee: fee);
 
-    if (appointment != null && mounted) {
+    if (appointment == null || !mounted) return;
+
+    if (paymentMode == 'online_full') {
+      final userProfile = ref.read(authControllerProvider).valueOrNull;
+      final doctor = ref
+          .read(doctorProfileProvider(widget.doctorId))
+          .valueOrNull;
+
+      final payment = await ref
+          .read(paymentControllerProvider.notifier)
+          .processOnlinePayment(
+            appointmentId: appointment.id,
+            amount: fee,
+            doctorName: doctor != null ? 'Dr. ${doctor.name}' : 'Doctor',
+            patientName: appointment.patientName,
+            patientPhone: userProfile?.phone ?? '+919999999999',
+            patientEmail: userProfile?.email ?? 'patient@doctorg.in',
+            mode: 'full',
+          );
+
+      if (payment != null && mounted) {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          ),
+          builder: (_) => PaymentReceiptSheet(
+            payment: payment,
+            doctorName: doctor != null ? 'Dr. ${doctor.name}' : 'Doctor',
+            hospitalName: doctor?.hospitalName,
+            onContinue: () {
+              if (mounted) {
+                context.go(
+                  '/booking-confirmation/${appointment.id}',
+                  extra: appointment,
+                );
+              }
+            },
+          ),
+        );
+      } else if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(
+              'Online payment was cancelled or failed. Slot is held for 5 minutes. You can retry or choose Pay at Clinic.',
+            ),
+          ),
+        );
+      }
+    } else {
       context.go('/booking-confirmation/${appointment.id}', extra: appointment);
     }
   }
@@ -70,6 +124,9 @@ class _BookingScreenState extends ConsumerState<BookingScreen> {
     final selectedFamily = ref.watch(selectedFamilyMemberProvider);
     final paymentMode = ref.watch(bookingPaymentModeProvider);
     final submissionState = ref.watch(bookingSubmissionControllerProvider);
+    final paymentState = ref.watch(paymentControllerProvider);
+    final isProcessing =
+        submissionState.isSubmitting || paymentState.isProcessing;
 
     final doctorAsync = ref.watch(doctorProfileProvider(widget.doctorId));
     final slotsAsync = ref.watch(
@@ -216,11 +273,7 @@ class _BookingScreenState extends ConsumerState<BookingScreen> {
               ),
 
               // Bottom Confirmation Bar
-              _buildBottomBar(
-                selectedSlot,
-                doctorFee,
-                submissionState.isSubmitting,
-              ),
+              _buildBottomBar(selectedSlot, doctorFee, isProcessing),
             ],
           );
         },
