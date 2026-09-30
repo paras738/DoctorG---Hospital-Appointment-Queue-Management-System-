@@ -1,0 +1,85 @@
+{
+  "@@locale": "en",
+  "appTitle": "DoctorG",
+  "tagline": "Discover Doctors, Book Slots & Live Queue Tracking",
+  "medicalDisclaimer": "DoctorG is a doctor discovery and queue management platform, not a substitute for professional medical diagnosis or emergency care.",
+  
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "email": "Email Address",
+  "password": "Password",
+  "fullName": "Full Name",
+  "orContinueWith": "Or continue with",
+  "googleSignIn": "Continue with Google",
+  "phoneSignIn": "Sign in with Phone OTP",
+  "enterPhone": "Enter 10-digit mobile number",
+  "enterOtp": "Enter 6-digit OTP",
+  "sendOtp": "Send OTP",
+  "verifyOtp": "Verify & Continue",
+  "selectRole": "Select Your Role",
+  "rolePatient": "Patient / Caregiver",
+  "roleDoctor": "Doctor / Clinic",
+  
+  "searchPlaceholder": "Search by symptom (e.g. chest pain, rash) or doctor",
+  "specialization": "Specialization",
+  "allSpecializations": "All Specializations",
+  "filters": "Filters",
+  "availableToday": "Available Today",
+  "availableNow": "Available Now",
+  "topRated": "Top Rated",
+  "experience": "{years} yrs exp",
+  "@experience": {
+    "placeholders": {
+      "years": { "type": "int" }
+    }
+  },
+  "consultationFee": "₹{fee}",
+  "@consultationFee": {
+    "placeholders": {
+      "fee": { "type": "String" }
+    }
+  },
+  "bookSlot": "Book Slot",
+  "nextAvailable": "Next slot: {slot}",
+  "@nextAvailable": {
+    "placeholders": {
+      "slot": { "type": "String" }
+    }
+  },
+  
+  "liveQueue": "Live Queue",
+  "yourToken": "Your Token",
+  "nowServing": "Now Serving",
+  "estimatedWait": "Estimated wait ~{minutes} min",
+  "@estimatedWait": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
+  "patientsAhead": "{count} patients ahead",
+  "@patientsAhead": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "pleaseLeaveNow": "Time to leave for clinic!",
+  "youAreNext": "You are next in line!",
+  
+  "hospitalsMap": "Nearby Hospitals",
+  "viewList": "List",
+  "viewMap": "Map",
+  "radius": "Radius",
+  "getDirections": "Directions",
+  "openGoogleMaps": "Open in Google Maps",
+  "callClinic": "Call Clinic",
+  
+  "payFull": "Pay Full Online",
+  "payClinic": "Pay Booking Fee Online",
+  "paymentSuccess": "Payment Successful!",
+  "bookingConfirmed": "Appointment Confirmed",
+  
+  "callNext": "Call Next Patient",
+  "markComplete": "Complete Consultation",
+  "markNoShow": "Mark No-Show",
+  "delayUpdate": "Update Delay"
+}

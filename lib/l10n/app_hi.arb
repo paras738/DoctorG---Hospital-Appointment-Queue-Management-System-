@@ -1,0 +1,85 @@
+{
+  "@@locale": "hi",
+  "appTitle": "डॉक्टर जी (DoctorG)",
+  "tagline": "आस-पास के डॉक्टर खोजें, स्लॉट बुक करें और लाइव कतार देखें",
+  "medicalDisclaimer": "डॉक्टर जी डॉक्टर खोजने और कतार प्रबंधन का मंच है, यह किसी आपातकालीन चिकित्सा या निदान का विकल्प नहीं है।",
+  
+  "signIn": "लॉग इन करें",
+  "signUp": "साइन अप करें",
+  "email": "ईमेल पता",
+  "password": "पासवर्ड",
+  "fullName": "पूरा नाम",
+  "orContinueWith": "या इसके साथ जारी रखें",
+  "googleSignIn": "Google से जारी रखें",
+  "phoneSignIn": "फ़ोन OTP से लॉगिन करें",
+  "enterPhone": "10 अंकों का मोबाइल नंबर दर्ज करें",
+  "enterOtp": "6 अंकों का OTP दर्ज करें",
+  "sendOtp": "OTP भेजें",
+  "verifyOtp": "सत्यापित करें और आगे बढ़ें",
+  "selectRole": "अपनी भूमिका चुनें",
+  "rolePatient": "मरीज / परिजन",
+  "roleDoctor": "डॉक्टर / क्लीनिक",
+  
+  "searchPlaceholder": "लक्षण (जैसे सीने में दर्द, दाद) या डॉक्टर खोजें",
+  "specialization": "विशेषज्ञता",
+  "allSpecializations": "सभी विशेषज्ञताएं",
+  "filters": "फ़िल्टर",
+  "availableToday": "आज उपलब्ध",
+  "availableNow": "अभी उपलब्ध",
+  "topRated": "शीर्ष रेटेड",
+  "experience": "{years} वर्ष अनुभव",
+  "@experience": {
+    "placeholders": {
+      "years": { "type": "int" }
+    }
+  },
+  "consultationFee": "₹{fee}",
+  "@consultationFee": {
+    "placeholders": {
+      "fee": { "type": "String" }
+    }
+  },
+  "bookSlot": "स्लॉट बुक करें",
+  "nextAvailable": "अगला स्लॉट: {slot}",
+  "@nextAvailable": {
+    "placeholders": {
+      "slot": { "type": "String" }
+    }
+  },
+  
+  "liveQueue": "लाइव कतार",
+  "yourToken": "आपका टोकन",
+  "nowServing": "वर्तमान टोकन",
+  "estimatedWait": "अनुमानित प्रतीक्षा ~{minutes} मिनट",
+  "@estimatedWait": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
+  "patientsAhead": "आपसे आगे {count} मरीज",
+  "@patientsAhead": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "pleaseLeaveNow": "क्लीनिक के लिए निकलने का समय हो गया!",
+  "youAreNext": "अगली बारी आपकी है!",
+  
+  "hospitalsMap": "निकटतम अस्पताल",
+  "viewList": "सूची",
+  "viewMap": "मानचित्र",
+  "radius": "दूरी का दायरा",
+  "getDirections": "रास्ता देखें",
+  "openGoogleMaps": "Google Maps में खोलें",
+  "callClinic": "क्लीनिक को कॉल करें",
+  
+  "payFull": "पूरा भुगतान ऑनलाइन करें",
+  "payClinic": "बुकिंग शुल्क ऑनलाइन दें",
+  "paymentSuccess": "भुगतान सफल रहा!",
+  "bookingConfirmed": "अपॉइंटमेंट की पुष्टि हो गई",
+  
+  "callNext": "अगले मरीज को बुलाएं",
+  "markComplete": "परामर्श पूरा करें",
+  "markNoShow": "अनुपस्थित दर्ज करें",
+  "delayUpdate": "विलंब का समय अपडेट करें"
+}
