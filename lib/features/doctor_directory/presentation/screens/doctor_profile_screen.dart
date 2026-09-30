@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/distance_calculator.dart';
@@ -131,16 +132,7 @@ class DoctorProfileScreen extends ConsumerWidget {
                         ],
                       ),
                       FilledButton(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                'Proceeding to slot booking engine (Phase 4)',
-                              ),
-                              backgroundColor: AppTheme.primaryTeal,
-                            ),
-                          );
-                        },
+                        onPressed: () => context.push('/booking/${doctor.id}'),
                         style: FilledButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 28,

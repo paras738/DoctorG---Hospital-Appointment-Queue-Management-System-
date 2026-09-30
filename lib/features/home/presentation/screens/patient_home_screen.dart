@@ -6,6 +6,8 @@ import '../../../features/doctor_directory/presentation/screens/doctor_directory
 import '../../../features/hospitals_map/presentation/screens/hospitals_map_screen.dart';
 import '../../../features/auth/presentation/controllers/auth_controller.dart';
 
+import '../../../features/booking/presentation/screens/my_appointments_screen.dart';
+
 final homeNavIndexProvider = StateProvider<int>((ref) => 0);
 
 class PatientHomeScreen extends ConsumerWidget {
@@ -18,7 +20,7 @@ class PatientHomeScreen extends ConsumerWidget {
     final pages = [
       const DoctorDirectoryScreen(),
       const HospitalsMapScreen(),
-      const _AppointmentsTabPlaceholder(),
+      const MyAppointmentsScreen(),
       const _ProfileTabPlaceholder(),
     ];
 

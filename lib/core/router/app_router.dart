@@ -11,6 +11,10 @@ import '../../features/auth/domain/models/user_profile.dart';
 import '../../features/doctor_directory/presentation/screens/doctor_directory_screen.dart';
 import '../../features/doctor_directory/presentation/screens/doctor_profile_screen.dart';
 import '../../features/home/presentation/screens/patient_home_screen.dart';
+import '../../features/booking/presentation/screens/booking_screen.dart';
+import '../../features/booking/presentation/screens/booking_confirmation_screen.dart';
+import '../../features/booking/presentation/screens/my_appointments_screen.dart';
+import '../../features/booking/domain/models/appointment_model.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authProfileStreamProvider);
@@ -56,12 +60,35 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/home',
         builder: (context, state) => const PatientHomeScreen(),
       ),
+
       GoRoute(
         path: '/doctor/:id',
         builder: (context, state) {
           final docId = state.pathParameters['id'] ?? '';
           return DoctorProfileScreen(doctorId: docId);
         },
+      ),
+      GoRoute(
+        path: '/booking/:doctorId',
+        builder: (context, state) {
+          final docId = state.pathParameters['doctorId'] ?? '';
+          return BookingScreen(doctorId: docId);
+        },
+      ),
+      GoRoute(
+        path: '/booking-confirmation/:appointmentId',
+        builder: (context, state) {
+          final appId = state.pathParameters['appointmentId'] ?? '';
+          final app = state.extra as AppointmentModel?;
+          return BookingConfirmationScreen(
+            appointmentId: appId,
+            appointment: app,
+          );
+        },
+      ),
+      GoRoute(
+        path: '/my-appointments',
+        builder: (context, state) => const MyAppointmentsScreen(),
       ),
       GoRoute(
         path: '/doctor-dashboard',
