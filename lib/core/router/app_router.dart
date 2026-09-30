@@ -8,6 +8,9 @@ import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/auth/presentation/screens/role_selection_screen.dart';
 import '../../features/auth/domain/models/user_profile.dart';
 
+import '../../features/doctor_directory/presentation/screens/doctor_directory_screen.dart';
+import '../../features/doctor_directory/presentation/screens/doctor_profile_screen.dart';
+
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authProfileStreamProvider);
 
@@ -15,7 +18,6 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: '/home',
     redirect: (context, state) {
       final isLoading = authState.isLoading;
-      final hasError = authState.hasError;
       final user = authState.valueOrNull;
 
       if (isLoading) return null; // Wait for session load
@@ -51,7 +53,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/home',
-        builder: (context, state) => const PatientHomePlaceholder(),
+        builder: (context, state) => const DoctorDirectoryScreen(),
+      ),
+      GoRoute(
+        path: '/doctor/:id',
+        builder: (context, state) {
+          final docId = state.pathParameters['id'] ?? '';
+          return DoctorProfileScreen(doctorId: docId);
+        },
       ),
       GoRoute(
         path: '/doctor-dashboard',
