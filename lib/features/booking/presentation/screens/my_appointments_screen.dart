@@ -7,6 +7,7 @@ import '../../../../core/theme/app_theme.dart';
 import '../../domain/models/appointment_model.dart';
 import '../controllers/booking_controller.dart';
 import '../../data/repositories/supabase_booking_repository.dart';
+import '../../../reviews/presentation/widgets/leave_review_sheet.dart';
 
 class MyAppointmentsScreen extends ConsumerStatefulWidget {
   const MyAppointmentsScreen({super.key});
@@ -72,6 +73,21 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen> {
             child: const Text('Yes, Cancel'),
           ),
         ],
+      ),
+    );
+  }
+
+  void _openLeaveReviewSheet(AppointmentModel app) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (_) => LeaveReviewSheet(
+        appointmentId: app.id,
+        doctorId: app.doctorId,
+        doctorName: app.doctorName,
       ),
     );
   }
@@ -298,6 +314,24 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen> {
                     onPressed: () => context.go(
                       '/live-queue/${app.doctorId}?token=${app.tokenNumber}',
                     ),
+                  )
+                else if (app.status == 'completed')
+                  FilledButton.icon(
+                    icon: const Icon(Icons.star_rounded, size: 16),
+                    label: const Text(
+                      'Leave Review',
+                      style: TextStyle(fontSize: 12),
+                    ),
+                    style: FilledButton.styleFrom(
+                      backgroundColor: AppTheme.accentAmber,
+                      foregroundColor: Colors.brown.shade900,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 0,
+                      ),
+                      minimumSize: const Size(110, 36),
+                    ),
+                    onPressed: () => _openLeaveReviewSheet(app),
                   )
                 else
                   const SizedBox.shrink(),

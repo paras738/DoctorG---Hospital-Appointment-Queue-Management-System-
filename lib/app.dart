@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/theme/app_theme.dart';
 import 'core/router/app_router.dart';
+import 'core/localization/locale_controller.dart';
 
 /// DoctorG Main Application Widget
 class DoctorGApp extends ConsumerWidget {
@@ -12,10 +13,12 @@ class DoctorGApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
+    final locale = ref.watch(localeProvider);
 
     return MaterialApp.router(
       title: 'DoctorG',
       debugShowCheckedModeBanner: false,
+      locale: locale,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
