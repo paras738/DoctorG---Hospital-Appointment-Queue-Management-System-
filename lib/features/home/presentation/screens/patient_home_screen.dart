@@ -64,43 +64,6 @@ class PatientHomeScreen extends ConsumerWidget {
   }
 }
 
-class _AppointmentsTabPlaceholder extends StatelessWidget {
-  const _AppointmentsTabPlaceholder();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('My Appointments & Tokens')),
-      body: const Center(
-        child: Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.confirmation_number_outlined,
-                size: 64,
-                color: AppTheme.primaryTeal,
-              ),
-              SizedBox(height: 16),
-              Text(
-                'Live Queue & Booking Tokens',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 6),
-              Text(
-                'Active tokens and real-time live queue tracking will be linked here in Phase 4 & 5.',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class _ProfileTabPlaceholder extends ConsumerWidget {
   const _ProfileTabPlaceholder();
 

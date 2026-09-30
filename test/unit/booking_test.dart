@@ -87,68 +87,71 @@ void main() {
   });
 
   group('AppointmentModel & Cancellation Policy Tests', () {
-    test('enforces refund cancellation window for online vs clinic bookings', () {
-      final now = DateTime.now();
+    test(
+      'enforces refund cancellation window for online vs clinic bookings',
+      () {
+        final now = DateTime.now();
 
-      // Clinic pay booking allows cancellation anytime before slot
-      final clinicApp = AppointmentModel(
-        id: 'app-1',
-        doctorId: 'doc-1',
-        doctorName: 'Dr. Rajesh Sharma',
-        doctorSpecialization: 'Cardiologist',
-        patientId: 'patient-1',
-        patientName: 'Rohan Verma',
-        slotId: 'slot-1',
-        appointmentDate: now,
-        slotStart: now.add(const Duration(minutes: 45)),
-        slotEnd: now.add(const Duration(hours: 1)),
-        tokenNumber: 8,
-        status: 'confirmed',
-        bookingType: 'clinic_pay',
-        consultationFee: 800.0,
-        createdAt: now,
-      );
-      expect(clinicApp.canCancel, isTrue);
+        // Clinic pay booking allows cancellation anytime before slot
+        final clinicApp = AppointmentModel(
+          id: 'app-1',
+          doctorId: 'doc-1',
+          doctorName: 'Dr. Rajesh Sharma',
+          doctorSpecialization: 'Cardiologist',
+          patientId: 'patient-1',
+          patientName: 'Rohan Verma',
+          slotId: 'slot-1',
+          appointmentDate: now,
+          slotStart: now.add(const Duration(minutes: 45)),
+          slotEnd: now.add(const Duration(hours: 1)),
+          tokenNumber: 8,
+          status: 'confirmed',
+          bookingType: 'clinic_pay',
+          consultationFee: 800.0,
+          createdAt: now,
+        );
+        expect(clinicApp.canCancel, isTrue);
 
-      // Online prepaid booking allows refund only if >= 2 hours prior to slot
-      final prepaidFar = AppointmentModel(
-        id: 'app-2',
-        doctorId: 'doc-1',
-        doctorName: 'Dr. Rajesh Sharma',
-        doctorSpecialization: 'Cardiologist',
-        patientId: 'patient-1',
-        patientName: 'Rohan Verma',
-        slotId: 'slot-2',
-        appointmentDate: now,
-        slotStart: now.add(const Duration(hours: 4)),
-        slotEnd: now.add(const Duration(hours: 4, minutes: 15)),
-        tokenNumber: 9,
-        status: 'confirmed',
-        bookingType: 'online_full',
-        consultationFee: 800.0,
-        createdAt: now,
-      );
-      expect(prepaidFar.canCancel, isTrue);
+        // Online prepaid booking allows refund only if >= 2 hours prior to slot
+        final prepaidFar = AppointmentModel(
+          id: 'app-2',
+          doctorId: 'doc-1',
+          doctorName: 'Dr. Rajesh Sharma',
+          doctorSpecialization: 'Cardiologist',
+          patientId: 'patient-1',
+          patientName: 'Rohan Verma',
+          slotId: 'slot-2',
+          appointmentDate: now,
+          slotStart: now.add(const Duration(hours: 4)),
+          slotEnd: now.add(const Duration(hours: 4, minutes: 15)),
+          tokenNumber: 9,
+          status: 'confirmed',
+          bookingType: 'online_full',
+          consultationFee: 800.0,
+          createdAt: now,
+        );
+        expect(prepaidFar.canCancel, isTrue);
 
-      final prepaidClose = AppointmentModel(
-        id: 'app-3',
-        doctorId: 'doc-1',
-        doctorName: 'Dr. Rajesh Sharma',
-        doctorSpecialization: 'Cardiologist',
-        patientId: 'patient-1',
-        patientName: 'Rohan Verma',
-        slotId: 'slot-3',
-        appointmentDate: now,
-        slotStart: now.add(const Duration(minutes: 30)),
-        slotEnd: now.add(const Duration(minutes: 45)),
-        tokenNumber: 10,
-        status: 'confirmed',
-        bookingType: 'online_full',
-        consultationFee: 800.0,
-        createdAt: now,
-      );
-      expect(prepaidClose.canCancel, isFalse);
-    });
+        final prepaidClose = AppointmentModel(
+          id: 'app-3',
+          doctorId: 'doc-1',
+          doctorName: 'Dr. Rajesh Sharma',
+          doctorSpecialization: 'Cardiologist',
+          patientId: 'patient-1',
+          patientName: 'Rohan Verma',
+          slotId: 'slot-3',
+          appointmentDate: now,
+          slotStart: now.add(const Duration(minutes: 30)),
+          slotEnd: now.add(const Duration(minutes: 45)),
+          tokenNumber: 10,
+          status: 'confirmed',
+          bookingType: 'online_full',
+          consultationFee: 800.0,
+          createdAt: now,
+        );
+        expect(prepaidClose.canCancel, isFalse);
+      },
+    );
   });
 
   group('FamilyMemberModel Tests', () {

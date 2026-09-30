@@ -295,7 +295,9 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen> {
                       ),
                       minimumSize: const Size(100, 36),
                     ),
-                    onPressed: () => context.go('/live-queue/${app.doctorId}'),
+                    onPressed: () => context.go(
+                      '/live-queue/${app.doctorId}?token=${app.tokenNumber}',
+                    ),
                   )
                 else
                   const SizedBox.shrink(),

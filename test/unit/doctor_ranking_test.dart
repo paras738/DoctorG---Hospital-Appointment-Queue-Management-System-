@@ -32,40 +32,43 @@ void main() {
       expect(scoreDoc2Boosted, closeTo(4.417, 0.01));
     });
 
-    test('DoctorModel serialization preserves Bayesian score and top rated flag', () {
-      final doc = DoctorModel(
-        id: 'doc-001',
-        fullName: 'Dr. Rajesh Sharma',
-        registrationNumber: 'KMC-10001',
-        specialization: 'Cardiologist',
-        experienceYears: 18,
-        consultationFee: 800.0,
-        languages: const ['English', 'Hindi'],
-        isVerified: true,
-        isAvailableToday: true,
-        isAvailableNow: true,
-        avgConsultationMinutes: 15,
-        reviewCount: 52,
-        avgRating: 4.8,
-        bayesianScore: 4.917,
-        isTopRated: true,
-        hospitalName: 'Fortis Hospital',
-        hospitalAddress: 'Cunningham Rd, Bengaluru',
-        distanceMeters: 2300,
-      );
+    test(
+      'DoctorModel serialization preserves Bayesian score and top rated flag',
+      () {
+        final doc = DoctorModel(
+          id: 'doc-001',
+          fullName: 'Dr. Rajesh Sharma',
+          registrationNumber: 'KMC-10001',
+          specialization: 'Cardiologist',
+          experienceYears: 18,
+          consultationFee: 800.0,
+          languages: const ['English', 'Hindi'],
+          isVerified: true,
+          isAvailableToday: true,
+          isAvailableNow: true,
+          avgConsultationMinutes: 15,
+          reviewCount: 52,
+          avgRating: 4.8,
+          bayesianScore: 4.917,
+          isTopRated: true,
+          hospitalName: 'Fortis Hospital',
+          hospitalAddress: 'Cunningham Rd, Bengaluru',
+          distanceMeters: 2300,
+        );
 
-      final json = doc.toJson();
-      expect(json['doctor_id'], equals('doc-001'));
-      expect(json['is_top_rated'], isTrue);
-      expect(json['bayesian_score'], equals(4.917));
-      expect(json['consultation_fee'], equals(800.0));
+        final json = doc.toJson();
+        expect(json['doctor_id'], equals('doc-001'));
+        expect(json['is_top_rated'], isTrue);
+        expect(json['bayesian_score'], equals(4.917));
+        expect(json['consultation_fee'], equals(800.0));
 
-      final recreated = DoctorModel.fromJson(json);
-      expect(recreated.id, equals(doc.id));
-      expect(recreated.fullName, equals(doc.fullName));
-      expect(recreated.isTopRated, isTrue);
-      expect(recreated.hospitalName, equals('Fortis Hospital'));
-    });
+        final recreated = DoctorModel.fromJson(json);
+        expect(recreated.id, equals(doc.id));
+        expect(recreated.fullName, equals(doc.fullName));
+        expect(recreated.isTopRated, isTrue);
+        expect(recreated.hospitalName, equals('Fortis Hospital'));
+      },
+    );
   });
 
   group('DoctorFilter Tests', () {

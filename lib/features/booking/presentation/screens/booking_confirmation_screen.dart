@@ -193,7 +193,9 @@ class BookingConfirmationScreen extends StatelessWidget {
                   label: const Text('Watch Live Queue Position'),
                   onPressed: () {
                     if (appointment != null) {
-                      context.go('/live-queue/${appointment!.doctorId}');
+                      context.go(
+                        '/live-queue/${appointment!.doctorId}?token=${appointment!.tokenNumber}',
+                      );
                     } else {
                       context.go('/home');
                     }

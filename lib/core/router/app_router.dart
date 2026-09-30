@@ -15,6 +15,8 @@ import '../../features/booking/presentation/screens/booking_screen.dart';
 import '../../features/booking/presentation/screens/booking_confirmation_screen.dart';
 import '../../features/booking/presentation/screens/my_appointments_screen.dart';
 import '../../features/booking/domain/models/appointment_model.dart';
+import '../../features/live_queue/presentation/screens/live_queue_screen.dart';
+import '../../features/doctor_dashboard/presentation/screens/doctor_dashboard_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authProfileStreamProvider);
@@ -91,8 +93,17 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const MyAppointmentsScreen(),
       ),
       GoRoute(
+        path: '/live-queue/:doctorId',
+        builder: (context, state) {
+          final docId = state.pathParameters['doctorId'] ?? '';
+          final tokenStr = state.uri.queryParameters['token'];
+          final token = int.tryParse(tokenStr ?? '') ?? 12;
+          return LiveQueueScreen(doctorId: docId, userToken: token);
+        },
+      ),
+      GoRoute(
         path: '/doctor-dashboard',
-        builder: (context, state) => const DoctorDashboardPlaceholder(),
+        builder: (context, state) => const DoctorDashboardScreen(),
       ),
     ],
   );

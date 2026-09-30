@@ -63,7 +63,10 @@ void main() {
         startLat + 0.0008,
         startLng,
       );
-      expect(distShort, lessThan(AppConfig.routeCacheThresholdMeters.toDouble()));
+      expect(
+        distShort,
+        lessThan(AppConfig.routeCacheThresholdMeters.toDouble()),
+      );
 
       // Point 2: User moved by ~350 meters (should trigger re-fetch)
       final distLong = DistanceCalculator.haversineDistanceMeters(
@@ -72,7 +75,10 @@ void main() {
         startLat + 0.003,
         startLng,
       );
-      expect(distLong, greaterThan(AppConfig.routeCacheThresholdMeters.toDouble()));
+      expect(
+        distLong,
+        greaterThan(AppConfig.routeCacheThresholdMeters.toDouble()),
+      );
     });
   });
 }
