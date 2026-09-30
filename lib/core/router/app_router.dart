@@ -10,6 +10,7 @@ import '../../features/auth/domain/models/user_profile.dart';
 
 import '../../features/doctor_directory/presentation/screens/doctor_directory_screen.dart';
 import '../../features/doctor_directory/presentation/screens/doctor_profile_screen.dart';
+import '../../features/home/presentation/screens/patient_home_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authProfileStreamProvider);
@@ -53,7 +54,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/home',
-        builder: (context, state) => const DoctorDirectoryScreen(),
+        builder: (context, state) => const PatientHomeScreen(),
       ),
       GoRoute(
         path: '/doctor/:id',
